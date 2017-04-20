@@ -1,0 +1,90 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.logged-out {
+    background-color: #d62929 !important;
+    border-color: #d62929 !important;
+}
+
+.logged-in {
+    background-color: #43a047 !important;
+    border-color: #43a047 !important;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-brand:hover {
+    color: lightblue;
+}
+
+input[type=button] {
+    width: 130px;
+    height: 40px;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    font-family: Arial,sans-serif;
+    border: 0;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+input[type=button] {
+    background-color: #cccccc;
+    border-bottom: 4px solid #bfbfbf
+}
+
+input[type=button]:hover {
+        background-color: #b3b3b3;
+}
+
+input[type=button]:active {
+    border-bottom: 0 !important;
+    height: 36px;
+    margin-top: 4px;
+}
+
+input[type=button].red {
+    background-color: #f47e7e;
+    border-bottom: 4px solid #e76969;
+}
+
+input[type=button]:hover.red {
+        background-color: #e05d5d;
+}
+
+
+input[type=button].green {
+    background-color: #81ca85;
+    border-bottom: 4px solid #6fc373;
+}
+
+input[type=button]:hover.green {
+    background-color: #5dbb62;
+}
+
+p.green {
+    color: #43a047
+}
+
+p.red {
+    color: #d62929
+}

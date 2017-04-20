@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{30C4B158-C2D5-4455-A667-4139709467D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altis.CommonLogin.TestSite.Web", "app\web\Altis.CommonLogin.TestSite.Web\Altis.CommonLogin.TestSite.Web.csproj", "{5D5950A0-EB7D-4B79-95B9-25B9CF46E275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altis.CommonLogin.Web", "app\web\Altis.CommonLogin.Web\Altis.CommonLogin.Web.csproj", "{EAF8BD7B-13CD-49EB-A8C8-FB8EADEC2E80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altis.CommonLogin.Owin", "app\Altis.CommonLogin.Owin\Altis.CommonLogin.Owin.csproj", "{F605092B-8A99-4A78-BF4D-1C1859724B00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D5950A0-EB7D-4B79-95B9-25B9CF46E275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D5950A0-EB7D-4B79-95B9-25B9CF46E275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D5950A0-EB7D-4B79-95B9-25B9CF46E275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D5950A0-EB7D-4B79-95B9-25B9CF46E275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAF8BD7B-13CD-49EB-A8C8-FB8EADEC2E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAF8BD7B-13CD-49EB-A8C8-FB8EADEC2E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAF8BD7B-13CD-49EB-A8C8-FB8EADEC2E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAF8BD7B-13CD-49EB-A8C8-FB8EADEC2E80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F605092B-8A99-4A78-BF4D-1C1859724B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F605092B-8A99-4A78-BF4D-1C1859724B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F605092B-8A99-4A78-BF4D-1C1859724B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F605092B-8A99-4A78-BF4D-1C1859724B00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D5950A0-EB7D-4B79-95B9-25B9CF46E275} = {30C4B158-C2D5-4455-A667-4139709467D9}
+		{EAF8BD7B-13CD-49EB-A8C8-FB8EADEC2E80} = {30C4B158-C2D5-4455-A667-4139709467D9}
+	EndGlobalSection
+EndGlobal

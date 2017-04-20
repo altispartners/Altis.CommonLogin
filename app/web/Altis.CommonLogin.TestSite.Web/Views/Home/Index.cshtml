@@ -1,0 +1,24 @@
+﻿<h2>Altis Common Login Test Site</h2>
+<br />
+
+@if (this.User.Identity.IsAuthenticated)
+{
+    if (!String.IsNullOrEmpty(this.User.Identity.Name))
+    {
+        <p>Hi @this.User.Identity.Name, welcome to the Altis Common Login test site.</p>
+        <br />
+        <p class="green">You are logged in.</p>
+    }
+    else
+    {
+        <p>Welcome to the Altis Common Login test site.</p>
+        <br />
+        <p class="green">You are logged in.</p>
+    }
+}
+else
+{
+    <p>Welcome to the Altis Common Login test site.</p>
+    <br />
+    <p class="red">You are not currently logged in.</p>
+}
