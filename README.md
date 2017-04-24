@@ -11,9 +11,33 @@ An overview of the Altis.CommonLogin process can be seen in the diagram below:
 
 ![Altis.CommonLogin](docs/Altis.CommonLogin.png)
 
+When an unauthenticated user navigates to an internal web application (IWA) the IWA will redirect the user to the Altis CommonLogin site. CommonLogin will then submit a SAML authentication request to the external identity provider. The user will then be prompted to authenticate against the external identity provider and a SAML response will be sent back to Altis CommonLogin. The SAML response will be processed and the user identity will be stored in an encrypted cookie, ready for use by the IWA. The user is returned to the IWA and their identity and access privileges are verified, enabling the user to accessed the content of the website.
+
+The common login setup only really makes sense in a scenario where you have multiple IWAs. If an authenticated user accesses a second IWA, the IWA will be able to retrieve the users identity and access roles from the encrypted cookie and directly authenticate the user. If the user logs out of the common login system they automatically be logged our of all IWAs.
+
 
 ## Usage
-Below is a complete example of how to customise you website to include Altis.CommonLogin. The prerequisites are an existing .NET website and an external identity provider.
+In order to configure a web application to use Altis.CommonLogin there are a number of steps to follow and prerequisites that must be in place:
+
+###Prerequisites
+1. An external SAML 2 identity provider such as OneLogin, Octa, Centrify, LastPass, etc.
+2. An internal .NET web application
+
+###Integration Steps
+Altis.CommonLogin.Web Configuration
+
+----------
+
+1. Set you external identity provider's certificate in the [IdentityProviderCertificate.cer](app/web/Altis.CommonLogin.Web/App_Data/IdentityProviderCertificate.cer) file.
+2. If the internal web application is not located on the same server as the instance of Altis.CommonLogin.Web set a new machine key in the Web.config file.
+3. Configure the required authentication settings in the Web.config file as detailed in the [configuration section](#configuration) below.
+4. Perform any custom mapping of claims and roles (see [Claims Customisation](#claims-customisation)).
+
+Internal Web Application Configuration
+
+----------
+
+Comming soon!
 
 
 ## Project Structure
@@ -74,16 +98,8 @@ This site is a complete example of a site which requires authentication from the
 
 ## Configuration
 
-### Altis.CommonLogin.TestSite.Web
-| Setting | Required | Description |
-| --- | --- | --- |
-| AuthorisedRoles | If authorisation roles are enabled | A comma separated list of the internally specified roles that are able to access the website |
-| CommonLoginUrl | Yes | The URL of the Altis.CommonLogin.Web authentication site |
-| CookieDomain | Yes | The root domain that the sites are hosted on and that the authentication cookie will be stored for |
-| DisableAuthentication | No | Disable Altis.CommonLogin for the website (useful primarily for debugging in Visual Studio) |
-| DisableAuthorisationRoles | No | Disable the use of internal authorisation roles. All authenticated users will be able to access the site |
-
 ### Altis.CommonLogin.Web
+Web.config appSettings:
 | Setting | Required | Description |
 | --- | --- | --- |
 | CommonLoginUrl | Yes | The URL of the Altis.CommonLogin.Web authentication site |
@@ -92,10 +108,24 @@ This site is a complete example of a site which requires authentication from the
 | SingleSignOnIssuerUrl | Yes | External identity provider issuer URL |
 | SingleSignOnTargetUrl | Yes | External identity provider SAML 2.0 sign on endpoint |
 | SingleLogoutTargetUrl | No  | External identity provider single logout endpoint |
-| [IdentityProviderRoleName]Roles | No | You can provide any number of identity provider roles parameters and give a comma separated list of the internal roles that they map to. These are role claims that may be provided by the external identity provider but not recognised by the internal websites. These are used in the Altis.CommonLogin.Web [AccountController.cs](app/web/Altis.CommonLogin.Web/Controllers/AccountController.cs) and the use can be adjusted within that class |
+| [IdP Role Claim Name]Roles | No | You can provide any number of identity provider roles parameters and give a comma separated list of the internal roles that they map to. These are role claims that may be provided by the external identity provider but not recognised by the internal websites. These are used in the Altis.CommonLogin.Web [AccountController.cs](app/web/Altis.CommonLogin.Web/Controllers/AccountController.cs) and the use can be adjusted within that class |
 
+In addition to the Web.config settings above, an identity provider certificate also needs to be specified. This is locates in the [IdentityProviderCertificate.cer](app/web/Altis.CommonLogin.Web/App_Data/IdentityProviderCertificate.cer) file
 
-## Customisation
+### Altis.CommonLogin.TestSite.Web
+Web.config appSettings:
+| Setting | Required | Description |
+| --- | --- | --- |
+| AuthorisedRoles | If authorisation roles are enabled | A comma separated list of the internally specified roles that are able to access the website |
+| CommonLoginUrl | Yes | The URL of the Altis.CommonLogin.Web authentication site |
+| CookieDomain | Yes | The root domain that the sites are hosted on and that the authentication cookie will be stored for |
+| DisableAuthentication | No | Disable Altis.CommonLogin for the website (useful primarily for debugging in Visual Studio) |
+| DisableAuthorisationRoles | No | Disable the use of internal authorisation roles. All authenticated users will be able to access the site |
+
+### Machine Key
+If the internal web application is not located on the same server as the instance of Altis.CommonLogin.Web then a machine key will need to be specified in the Web.config files of both the internal web application and the Altis.CommonLogin.web sites. The projects contain a sample machine key, but it is important to change this to a unique and private key if it is required, to ensure the application remains secure. For details on how to generate machine keys check out the ariticle [here](https://blogs.msdn.microsoft.com/amb/2012/07/31/easiest-way-to-generate-machinekey/).
+
+## Claims Customisation
 Beyond simple configuration of the application and your Identity provider the most likely area of customisation will be in the processing of the claims from the external identity provider and mapping these to claims on the internal identity. An example implementation taken from  [AccountController.cs](app/web/Altis.CommonLogin.Web/Controllers/AccountController.cs) can be seen below:
 
 ```C#
