@@ -19,23 +19,19 @@ The common login setup only really makes sense in a scenario where you have mult
 ## Usage
 In order to configure a web application to use Altis.CommonLogin there are a number of steps to follow and prerequisites that must be in place:
 
-###Prerequisites
+### Prerequisites
 1. An external SAML 2 identity provider such as OneLogin, Octa, Centrify, LastPass, etc.
 2. An internal .NET web application
 
-###Integration Steps
-Altis.CommonLogin.Web Configuration
-
-----------
+### Integration Steps
+**Altis.CommonLogin.Web Configuration**
 
 1. Set you external identity provider's certificate in the [IdentityProviderCertificate.cer](app/web/Altis.CommonLogin.Web/App_Data/IdentityProviderCertificate.cer) file.
 2. If the internal web application is not located on the same server as the instance of Altis.CommonLogin.Web set a new machine key in the Web.config file.
 3. Configure the required authentication settings in the Web.config file as detailed in the [configuration section](#configuration) below.
 4. Perform any custom mapping of claims and roles (see [Claims Customisation](#claims-customisation)).
 
-Internal Web Application Configuration
-
-----------
+**Internal Web Application Configuration**
 
 Comming soon!
 
@@ -100,6 +96,7 @@ This site is a complete example of a site which requires authentication from the
 
 ### Altis.CommonLogin.Web
 Web.config appSettings:
+
 | Setting | Required | Description |
 | --- | --- | --- |
 | CommonLoginUrl | Yes | The URL of the Altis.CommonLogin.Web authentication site |
@@ -114,6 +111,7 @@ In addition to the Web.config settings above, an identity provider certificate a
 
 ### Altis.CommonLogin.TestSite.Web
 Web.config appSettings:
+
 | Setting | Required | Description |
 | --- | --- | --- |
 | AuthorisedRoles | If authorisation roles are enabled | A comma separated list of the internally specified roles that are able to access the website |
