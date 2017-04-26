@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Altis.CommonLogin.Owin")]
-[assembly: AssemblyDescription("Common login module for OWIN websites")]
+[assembly: AssemblyDescription("An ASP.NET authentication system for use across multiple websites on the same domain. For use with Altis.CommonLogin.Web (https://github.com/altispartners/Altis.CommonLogin).")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Altis Partners (Jersey) Limited")]
 [assembly: AssemblyProduct("Altis.CommonLogin.Owin")]
