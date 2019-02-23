@@ -5,25 +5,19 @@
     if (!String.IsNullOrEmpty(this.User.Identity.Name))
     {
         <p>Hi @this.User.Identity.Name,</p>
-        <br />
         <p class="red">You are logged in, but have insufficient privileges to access the requested site.</p>
-        <br />
         <p>Please request access from your system administrator or use a different account.</p>
     }
     else
     {
         <p class="red">You are logged in, but have insufficient privileges to access the requested site.</p>
-        <br />
         <p>Please request access from your system administrator or use a different account.</p>
     }
 }
 else
 {
     <h2>Altis Common Login</h2>
-    <br />
     <p>Welcome to the Altis Common Login site.</p>
-    <br />
     <p class="red">You are not currently logged in.</p>
-    <br />
     <input type="button" class="green" value="Log in" onclick="location.href = '/Account/Login'" />
 }

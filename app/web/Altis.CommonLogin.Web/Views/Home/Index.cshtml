@@ -6,16 +6,13 @@
     if (!String.IsNullOrEmpty(User.Identity.Name))
     {
         <p>Hi @User.Identity.Name, welcome to the Altis Common Login site.</p>
-        <br />
         <p class="green">You are logged in.</p>
     }
     else
     {
         <p>Welcome to the Altis Common Login site.</p>
-        <br/>
         <p class="green">You are logged in.</p>
     }
-    <br/>
 
     using (Html.BeginForm("Logout", "Account", FormMethod.Post, new {id = "logoutForm"}))
     {
@@ -26,8 +23,6 @@
 else
 {
     <p>Welcome to the Altis Common Login site.</p>
-    <br />
     <p class="red">You are not currently logged in.</p>
-    <br/>
     <input type="button" class="green" value="Log in" onclick="location.href = '/Account/Login'"/>
 }
