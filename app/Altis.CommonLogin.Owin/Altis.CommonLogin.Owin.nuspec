@@ -15,13 +15,13 @@
       <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
       <dependency id="Microsoft.AspNet.Razor" version="3.2.3" />
       <dependency id="Microsoft.AspNet.WebPages" version="3.2.3" />
-      <dependency id="Microsoft.Owin" version="3.1.0" />
-      <dependency id="Microsoft.Owin.Host.SystemWeb" version="3.1.0" />
-      <dependency id="Microsoft.Owin.Security" version="3.1.0" />
-      <dependency id="Microsoft.Owin.Security.Cookies" version="3.1.0" />
-      <dependency id="Microsoft.Owin.Security.OAuth" version="3.1.0" />
+      <dependency id="Microsoft.Owin" version="4.2.2" />
+      <dependency id="Microsoft.Owin.Host.SystemWeb" version="4.2.2" />
+      <dependency id="Microsoft.Owin.Security" version="4.2.2" />
+      <dependency id="Microsoft.Owin.Security.Cookies" version="4.2.2" />
+      <dependency id="Microsoft.Owin.Security.OAuth" version="4.2.2" />
       <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
-      <dependency id="Newtonsoft.Json" version="10.0.2" />
+      <dependency id="Newtonsoft.Json" version="10.0.3" />
       <dependency id="Owin" version="1.0" />
     </dependencies>
   </metadata>
