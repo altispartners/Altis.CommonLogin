@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Security.Claims;
+using System.Web;
 using System.Web.Configuration;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -9,12 +10,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using SameSiteMode = Microsoft.Owin.SameSiteMode;
 
 [assembly: OwinStartup(typeof(Authentication))]
-
 namespace Altis.CommonLogin.Owin
 {
-
     public static class Authentication
     {
         const double DefaultCookieExpiryHours = 12;
@@ -40,7 +40,7 @@ namespace Altis.CommonLogin.Owin
             RegisterFilters(GlobalFilters.Filters);
 
             //Create cookie authentication provider
-            CookieAuthenticationProvider provider = new CookieAuthenticationProvider();
+            var provider = new CookieAuthenticationProvider();
             var originalHandler = provider.OnApplyRedirect;
             var commonLoginUrl = WebConfigurationManager.AppSettings["CommonLoginUrl"];
             if (commonLoginUrl != null)
@@ -54,8 +54,7 @@ namespace Altis.CommonLogin.Owin
             }
 
             //Authentication cookie expiry timespan
-            double cookieExpiryHours;
-            if (!double.TryParse(WebConfigurationManager.AppSettings["CookieExpiryHours"], out cookieExpiryHours))
+            if (!double.TryParse(WebConfigurationManager.AppSettings["CookieExpiryHours"], out var cookieExpiryHours))
             {
                 cookieExpiryHours = DefaultCookieExpiryHours;
             }
@@ -77,7 +76,8 @@ namespace Altis.CommonLogin.Owin
                 CookieName = "CommonLoginPage",
                 ExpireTimeSpan = TimeSpan.FromHours(cookieExpiryHours),
                 CookieDomain = cookieDomain,
-                Provider = provider
+                Provider = provider,
+                CookieSameSite = SameSiteMode.None
             });
 
             //Set the anti-forgery claim type

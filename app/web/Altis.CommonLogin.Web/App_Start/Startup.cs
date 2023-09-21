@@ -1,17 +1,17 @@
 ﻿using System;
-using System.IdentityModel.Metadata;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Configuration;
 using System.Web.Hosting;
 using Altis.CommonLogin.Owin;
 using Altis.CommonLogin.Web;
-using Kentor.AuthServices;
-using Kentor.AuthServices.Configuration;
-using Kentor.AuthServices.Owin;
-using Kentor.AuthServices.WebSso;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Owin;
+using Sustainsys.Saml2;
+using Sustainsys.Saml2.Configuration;
+using Sustainsys.Saml2.Metadata;
+using Sustainsys.Saml2.Owin;
+using Sustainsys.Saml2.WebSso;
 
 [assembly: OwinStartup("MasterOwinStartup", typeof(Startup))]
 namespace Altis.CommonLogin.Web
@@ -22,10 +22,10 @@ namespace Altis.CommonLogin.Web
         {
             Authentication.Configuration(app);
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-            app.UseKentorAuthServicesAuthentication(CreateAuthServicesOptions());
+            app.UseSaml2Authentication(CreateAuthServicesOptions());
         }
 
-        private static KentorAuthServicesAuthenticationOptions CreateAuthServicesOptions()
+        private static Saml2AuthenticationOptions CreateAuthServicesOptions()
         {
             //Retrieve settings
             var commonLoginUrl = RetrieveAppSetting("CommonLoginUrl");
@@ -38,6 +38,7 @@ namespace Altis.CommonLogin.Web
             {
                 EntityId = new EntityId(commonLoginUrl),
                 ReturnUrl = new Uri(commonLoginUrl + "/Account/ExternalLoginCallback"),
+                ModulePath = "/AuthServices",
             };
 
             //Configure identity provider
@@ -63,7 +64,7 @@ namespace Altis.CommonLogin.Web
             identityProvider.SigningKeys.AddConfiguredKey(new X509Certificate2(certificatePath));
 
             //Return authenticaton options
-            var authenticationOptions = new KentorAuthServicesAuthenticationOptions(false) {SPOptions = serviceProvider};
+            var authenticationOptions = new Saml2AuthenticationOptions(false) {SPOptions = serviceProvider};
             authenticationOptions.IdentityProviders.Add(identityProvider);
             return authenticationOptions;
         }
