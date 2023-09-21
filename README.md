@@ -128,6 +128,7 @@ Web.config appSettings:
 | SingleSignOnTargetUrl | Yes | External identity provider SAML 2.0 sign on endpoint. |
 | SingleLogoutTargetUrl | No  | External identity provider single logout endpoint. |
 | [IdP Role Claim Name]Roles | No | You can provide any number of identity provider roles parameters and give a comma separated list of the internal roles that they map to. These are role claims that may be provided by the external identity provider but not recognised by the internal websites. These are used in the Altis.CommonLogin.Web [AccountController.cs](app/web/Altis.CommonLogin.Web/Controllers/AccountController.cs) and the use can be adjusted within that class. |
+| SkipCookieRedirectForApiPath | No | To exclude API endpoints from authentication redirection specify a unique part of the path to ignore (defaults to "~/api/"). |
 
 In addition to the Web.config settings above, an identity provider certificate also needs to be specified. This is locates in the [IdentityProviderCertificate.cer](app/web/Altis.CommonLogin.Web/App_Data/IdentityProviderCertificate.cer) file.
 
