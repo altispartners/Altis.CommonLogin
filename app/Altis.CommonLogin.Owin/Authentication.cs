@@ -47,6 +47,10 @@ namespace Altis.CommonLogin.Owin
             {
                 provider.OnApplyRedirect = context =>
                 {
+                    if (IsApiRequest(context.Request))
+                    {
+                        return;
+                    }
                     var redirectUri = commonLoginUrl + "/Account/Login" + new QueryString(context.Options.ReturnUrlParameter, context.Request.Uri.AbsoluteUri);
                     context.RedirectUri = redirectUri;
                     originalHandler.Invoke(context);
@@ -100,6 +104,12 @@ namespace Altis.CommonLogin.Owin
                 //Register authorise filter
                 filters.Add(new RoleClaimAttribute(roles));
             }
+        }
+
+        private static bool IsApiRequest(IOwinRequest request)
+        {
+            var apiPath = WebConfigurationManager.AppSettings["SkipCookieRedirectForApiPath"] ?? "~/api/";
+            return !string.IsNullOrWhiteSpace(apiPath) && request.Uri.LocalPath.ToLower().StartsWith(VirtualPathUtility.ToAbsolute(apiPath));
         }
     }
 }
